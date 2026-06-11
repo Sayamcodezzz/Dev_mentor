@@ -1,0 +1,46 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URI")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model bin {
+  id        String      @id @default(nanoid())
+  code      String
+  codeLang  String
+  fileName  String      @default("United")
+  createdAt DateTime    @default(now())
+  userId    String?
+  analytics Analytics[] @relation("Snippets_Analytics")
+  users     usr?        @relation("Snippets", fields: [userId], references: [id])
+}
+
+model usr {
+  id         String      @id @default(uuid())
+  name       String
+  email      String
+  authType   String
+  password   String?
+  snippetsId String?
+  snippets   bin[]       @relation("Snippets")
+  analytics  Analytics[] @relation("Analytics")
+}
+
+model Analytics {
+  id                 String   @id @default(nanoid())
+  language           String
+  key_improvements   String[]
+  Mistakes           Json
+  things_to_learn    String[]
+  code_rating        Int
+  enhance_suggestion String[]
+  enhance_code       String
+  binId              String
+  userId             String
+  snippets           bin      @relation("Snippets_Analytics", fields: [binId], references: [id])
+  users              usr      @relation("Analytics", fields: [userId], references: [id])
+  createdAt          DateTime @default(now())
+}

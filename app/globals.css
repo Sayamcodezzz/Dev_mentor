@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+body {
+  background: #1E1E1E;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Mozilla Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+.loader {
+    animation: rotate 1s infinite;
+    height: 30px;
+    width: 30px;
+  }
+
+  .loader:before,
+  .loader:after {
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 10px;
+    width: 10px;
+  }
+  .loader:before {
+    animation: ball1 1s infinite;
+    background-color: #fff;
+    box-shadow: 30px 0 0 #ff9307;
+    margin-bottom: 10px;
+  }
+  .loader:after {
+    animation: ball2 1s infinite;
+    background-color: #ff9307;
+    box-shadow: 30px 0 0 #fff;
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg) scale(0.8) }
+    50% { transform: rotate(360deg) scale(1.2) }
+    100% { transform: rotate(720deg) scale(0.8) }
+  }
+
+  @keyframes ball1 {
+    0% {
+      box-shadow: 30px 0 0 #ff9307;
+    }
+    50% {
+      box-shadow: 0 0 0 #ff9307;
+      margin-bottom: 0;
+      transform: translate(15px, 15px);
+    }
+    100% {
+      box-shadow: 30px 0 0 #ff9307;
+      margin-bottom: 10px;
+    }
+  }
+
+  @keyframes ball2 {
+    0% {
+      box-shadow: 30px 0 0 #fff;
+    }
+    50% {
+      box-shadow: 0 0 0 #fff;
+      margin-top: -20px;
+      transform: translate(15px, 15px);
+    }
+    100% {
+      box-shadow: 30px 0 0 #fff;
+      margin-top: 0;
+    }
+  }
+  
+
+.smped::-webkit-scrollbar {
+  width: 6px; /* Set the width of the scrollbar */
+  margin-right: 4px;
+}
+
+/* Customize the scrollbar track (background) */
+.smped::-webkit-scrollbar-track {
+  background-color: #424242; /* Light gray track */
+}
+
+/* Customize the scrollbar thumb (draggable part) */
+.smped::-webkit-scrollbar-thumb {
+  background-color: #323232; /* Darker gray thumb */
+  border-radius: 100px; /* Rounded corners for the thumb */
+}
+
+/* Optional: Style on hover */
+.smped::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Even darker gray on hover */
+}
+
+.message_loader {
+  position: relative;
+  border-style: solid;
+  box-sizing: border-box;
+  border-width: 40px 60px 30px 60px;
+  border-color: #3760C9 #96DDFC #96DDFC #36BBF7;
+  animation: envFloating 1s ease-in infinite alternate;
+}
+
+.message_loader:after{
+  content:"";
+  position: absolute;
+  right: 62px;
+  top: -40px;
+  height: 70px;
+  width: 50px;
+  background-image:
+            linear-gradient(#fff 45px, transparent 0),
+            linear-gradient(#fff 45px, transparent 0),
+            linear-gradient(#fff 45px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 30px 4px;
+  background-position: 0px 11px , 8px 35px, 0px 60px;
+  animation: envDropping 0.75s linear infinite;
+}
+
+@keyframes envFloating {
+  0% { transform: translate(-2px, -5px)}
+  100% { transform: translate(0, 5px)}
+}
+
+@keyframes envDropping {
+  0% {background-position: 100px 11px , 115px 35px, 105px 60px; opacity: 1;}
+  50% {background-position: 0px 11px , 20px 35px, 5px 60px; }
+  60% {background-position: -30px 11px , 0px 35px, -10px 60px; }
+  75%, 100% {background-position: -30px 11px , -30px 35px, -30px 60px; opacity: 0;}
+}
+      
